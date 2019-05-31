@@ -16,20 +16,31 @@ router.post("/", validateProject, (req, res) => {
         res.status(201).json(project)
     })
     .catch( error => {
-        res.status(500).json("Error occurs when trying to add new project")
+        res.status(500).json({message: "Error occurs when trying to add new project"})
     })
 })
 
-router.put("/:id", validateProjectId, (req, res) => {
+//update project 
+router.put("/:id", validateProjectId, validateProject, (req, res) => {
     projectDB.update(req.params.id, req.body) 
     .then( project => {
         res.status(200).json(project)
     })
     .catch( error => {
-        res.status(500).json("Error occurs when trying to update project")
+        res.status(500).json({message: "Error occurs when trying to update project"})
     })
 })
 
+//deleteing project
+router.delete("/:id", validateProjectId, (req, res) => {
+    projectDB.remove(req.params.id)
+    .then( response => {
+        res.status(200).json({message:`${response} record has been deleted` })
+    })
+    .catch( error => {
+        res.status(500).json({message: "Error occurs when trying to delete a project"})
+    })
+})
 
 
 //middleware
@@ -41,11 +52,11 @@ function validateProjectId(req, res, next) {
             req.project = project;
             next();
         } else {
-            res.status(404).json("project not found")
+            res.status(404).json({message: "project not found"})
         }
     })
     .catch (error => {
-        res.status(500).json("something went wrong")
+        res.status(500).json({message: "something went wrong"})
     })
 }
 
@@ -54,7 +65,7 @@ function validateProject(req, res, next) {
     if(req.body.name && req.body.description) {
         next();
     } else {
-        res.status(400).json("Please provide a name and a description of the project.")
+        res.status(400).json({message: "Please provide a name and a description of the project."})
     }
 }
 
