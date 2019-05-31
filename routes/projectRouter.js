@@ -20,6 +20,15 @@ router.post("/", validateProject, (req, res) => {
     })
 })
 
+router.put("/:id", validateProjectId, (req, res) => {
+    projectDB.update(req.params.id, req.body) 
+    .then( project => {
+        res.status(200).json(project)
+    })
+    .catch( error => {
+        res.status(500).json("Error occurs when trying to update project")
+    })
+})
 
 
 
