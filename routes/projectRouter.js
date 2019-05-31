@@ -3,6 +3,19 @@ const router = express.Router();
 const projectDB = require("../data/helpers/projectModel.js");
 const actionDB = require("../data/helpers/actionModel.js");
 
+
+//get all projects 
+
+router.get("/", (req, res) => {
+    projectDB.get()
+    .then( projects => {
+        res.status(200).json(projects)
+    })
+    .catch( error => {
+        res.status(500).json({message: "error occurs when trying to retrieve projects"})
+    })
+})
+
 //get project by id
 router.get("/:id", validateProjectId, (req, res) => {
     res.status(200).json(req.project)
@@ -42,6 +55,15 @@ router.delete("/:id", validateProjectId, (req, res) => {
     })
 })
 
+router.get("/:id/actions", validateProjectId, (req, res) => {
+    projectDB.getProjectActions(req.params.id)
+    .then( actions => {
+        res.status(200).json(actions)
+    })
+    .catch( error => {
+        res.status(500).json({message: "error occurs when trying to retrieve actions"})
+    })
+})
 
 //middleware
 //check and see if a project exist

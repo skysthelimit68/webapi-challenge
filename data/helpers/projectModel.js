@@ -9,6 +9,10 @@ module.exports = {
   getProjectActions,
 };
 
+function get() {
+  return db('projects');
+}
+
 function get(id) {
   let query = db('projects as p');
 
