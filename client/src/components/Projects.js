@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Project from "./Project";
+import "./projectStyle.css";
 
 class Projects extends React.Component {
     constructor() {

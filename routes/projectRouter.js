@@ -16,6 +16,7 @@ router.get("/", (req, res) => {
     })
 })
 
+
 //get project by id
 router.get("/:id", validateProjectId, (req, res) => {
     res.status(200).json(req.project)

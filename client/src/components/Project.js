@@ -25,7 +25,7 @@ class Project extends React.Component {
     }
     render(){
         return (
-            <div>
+            <div className="project_wrapper">
                 <h3>{this.props.project.name}</h3>
                 <h5>{this.props.project.description}</h5>
                 {this.state.actions.map( action => <Action action={action}/>)}

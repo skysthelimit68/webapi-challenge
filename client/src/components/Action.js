@@ -3,10 +3,10 @@ import axios from "axios";
 
 const Action = props => {
     return(
-        <div>
-            <p>Action Description: {props.action.description}</p>
-            <p>Action Notes: {props.action.notes}</p>
-            <p>Action Status: {props.action.completed? "completed" : "incomplete"}</p>
+        <div className="action_wrapper">
+            <p><span className="bold">Action Description:</span> {props.action.description}</p>
+            <p><span className="bold">Action Notes:</span>  {props.action.notes}</p>
+            <p><span className="bold">Action Status:</span>  {props.action.completed? "completed" : "incomplete"}</p>
         </div>
     )
 }
