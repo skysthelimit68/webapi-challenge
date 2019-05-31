@@ -20,6 +20,16 @@ router.post("/", validateProjectId, validateAction, (req, res) => {
     })
 })
 
+router.delete("/:id", validateActionId, (req, res) => {
+    actionDB.remove(req.params.id) 
+    .then( response => {
+        res.status(200).json({message: `${response} action has been removed`})
+    })
+    .catch( error => {
+        res.status(500).json({message: "error occured when trying to remove an action"})
+    })
+})
+
 
 //middleware
 //check and see if a project exist
