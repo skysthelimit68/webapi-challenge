@@ -1,0 +1,16 @@
+.project_wrapper {
+    border: 1px solid #00000030;
+    padding: 20px;
+    margin:20px 0 ;
+}
+
+.bold {
+    font-weight:700;
+}
+
+.action_wrapper {
+    margin:0 auto;
+    width:100%;
+    max-width:600px;
+    border-top:1px solid #00000020;
+}
